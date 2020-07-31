@@ -13,8 +13,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>14</source>
+                    <target>14</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -109,13 +109,6 @@
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
             <version>5.3.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-        <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>4.1.7</version>
         </dependency>
 
         <!--Gherkins language interpreting-->
@@ -286,6 +279,13 @@
             <artifactId>extentreports</artifactId>
             <version>4.0.9</version>
         </dependency>
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.aventstack/extentreports &ndash;&gt;
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>4.1.7</version>
+        </dependency>-->
 
         <!-- Testing framework for Java -->
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
