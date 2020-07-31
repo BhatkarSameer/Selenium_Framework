@@ -90,13 +90,6 @@
         <version>5.3.0</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-    <dependency>
-        <groupId>com.aventstack</groupId>
-        <artifactId>extentreports</artifactId>
-        <version>4.1.7</version>
-    </dependency>
-
     <!--Gherkins language interpreting-->
     <!-- https://mvnrepository.com/artifact/io.cucumber/gherkin -->
     <dependency>
@@ -263,8 +256,15 @@
     <dependency>
         <groupId>com.aventstack</groupId>
         <artifactId>extentreports</artifactId>
-        <version>5.0.0</version>
+        <version>4.0.9</version>
     </dependency>
+
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.aventstack/extentreports &ndash;&gt;
+    <dependency>
+        <groupId>com.aventstack</groupId>
+        <artifactId>extentreports</artifactId>
+        <version>4.1.7</version>
+    </dependency>-->
 
     <!-- Testing framework for Java -->
     <!-- https://mvnrepository.com/artifact/org.testng/testng -->
