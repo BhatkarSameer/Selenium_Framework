@@ -5,3 +5,4 @@
 /screenshots/**
 **/*.exe
 */pom.xml
+**/*.log

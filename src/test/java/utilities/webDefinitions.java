@@ -80,7 +80,7 @@ public class webDefinitions extends adv_initWebDriver {
     }
 
     //Manage and work with multiple Window handles
-    public static void managemultipleWindows() {
+    public static void manageWindows() {
         Set<String> windowHandles = driver.getWindowHandles ();
         Iterator<String> iterator = windowHandles.iterator ();
 
@@ -106,8 +106,8 @@ public class webDefinitions extends adv_initWebDriver {
 
     //Screenshot WebDriver screen
     public static void takeScreenshot() throws IOException {
+        waits (10);
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs (OutputType.FILE);
-
         FileUtils.copyFile (screenshot, new File ("src\\screenshots\\scrshot_" + timestamp + ".jpg"));
     }
 
@@ -183,7 +183,6 @@ public class webDefinitions extends adv_initWebDriver {
         //Returns the captured file path
         return destination;
     }
-
 
     /* Overloading method waits to handle Implicit, Explicit and Fluent waits */
 

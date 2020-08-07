@@ -15,23 +15,31 @@ import java.util.Properties;
 public class adv_initWebDriver extends initLogs {
 
     public static WebDriver driver;
+
+    public static Properties config_prop = new Properties ();
+    public static Properties OR_prop = new Properties ();
+
+    public static FileInputStream ip_stream = null;
+
     public static String url;
 
     public static void setupWebDriver() throws IOException {
 
-        Properties prop = new Properties ();
-        FileInputStream ip_stream = null;
-
         try {
-            ip_stream = new FileInputStream ("src\\test\\java\\utilities\\Resources\\Input.properties");
+            ip_stream = new FileInputStream ("src/test/resources/properties/Config.properties");
+            config_prop.load (ip_stream);
+
+            ip_stream = new FileInputStream ("src/test/resources/properties/OR.properties");
+            OR_prop.load (ip_stream);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace ();
         }
-        prop.load (ip_stream);
+
 
         //Read config settings
-        String browserName = prop.getProperty ("browserName");
-        url = prop.getProperty ("url");
+        String browserName = config_prop.getProperty ("browserName");
+        url = config_prop.getProperty ("testUrl");
 
         //Call browser method with the config setting for browser name
         setDriver (browserName);
@@ -43,7 +51,7 @@ public class adv_initWebDriver extends initLogs {
 
     }
 
-    public static void setDriver(String s) throws IOException {
+    public static void setDriver(String s) {
 
         switch (s) {
             case "Chrome" -> {

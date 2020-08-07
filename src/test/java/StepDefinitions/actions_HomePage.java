@@ -3,6 +3,7 @@ package StepDefinitions;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -18,42 +19,69 @@ public class actions_HomePage {
     public void RunSetup() throws IOException {
         adv_initWebDriver.setupWebDriver ();
         System.out.println ("Initiating WebDriver");
+        log.info ("//**** Initiating WebDriver ****//");
     }
 
-    @Given("Should be able to land on home page")
-    public void should_be_able_to_land_on_home_page() throws IOException {
+    @Given("User has reached on home page")
+    public void validate_home_page() throws IOException {
 
-        By page_title = By.xpath ("//*[@id=\'site-name\']/a/h1");
+        By page_title = By.cssSelector (OR_prop.getProperty ("home_page_css"));
 
         if (isElementPresent (page_title)) {
-
-            String Mainpage_title = (driver.findElement (By.xpath ("//*[@id=\'site-name\']/a/h1")).getText ());
-            System.out.println (("Navigated successfully to " + Mainpage_title));
+            System.out.println (("Navigated successfully to " + page_title));
             takeScreenshot ();
         }
     }
 
-    @When("User is able to locate the desired Webpage to test")
-    public void user_is_able_to_locate_the_desired_Webpage_to_test() throws IOException {
+    @And ("User can navigate to the test screen")
+    public void validate_testScreen () throws IOException {
 
-        //Locate Navigational webpage
-        WebElement wait_element = driver.findElement (By.xpath ("//*[@id=\'node-20\']//div[1]//div[2]/p[3]/a[2]"));
-        waits (wait_element, 100);
+        //Locate Navigational webElements
+        WebElement nav_pt1 = driver.findElement (By.xpath (OR_prop.getProperty ("hp_button1_xpath")));
+        WebElement nav_pt2 = driver.findElement (By.xpath (OR_prop.getProperty ("hp_button2_xpath")));
 
-        WebElement test_page1 = driver.findElement (By.xpath ("//*[@id=\'node-20\']//div[1]//div[2]/p[3]/a[2]"));
+        waits (10);
 
-        System.out.println ("Beginning Selenium Test on " + test_page1.getText ());
+        System.out.println ("We have two navigation points read as " + nav_pt1.getText () + " & " + nav_pt2.getText ());
 
-        setHighlighter (test_page1);
         takeScreenshot ();
+        if (nav_pt1.getText ().equals (OR_prop.getProperty ("navigational_direction"))) {
+            setHighlighter (nav_pt1);
+            nav_pt1.click ();
 
-        driver.findElement (By.xpath ("//*[@id=\'node-20\']//div[1]//div[2]/p[3]/a[2]")).click ();
-
+        } else {
+            setHighlighter (nav_pt2);
+            nav_pt2.click ();
+        }
     }
 
-    @And("Begin Validating desired Webpage for Testable elements")
-    public void begin_Validating_desired_Webpage_for_Testable_elements() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException ();
+    @When ("User is able to locate the desired Webpage to test")
+    public void validate_testElement () throws IOException {
+
+        waits (50);
+        try{
+
+            if (isElementPresent (By.cssSelector (OR_prop.getProperty ("tp_validator_css")))){
+
+                WebElement tp_validator = driver.findElement (By.cssSelector (OR_prop.getProperty ("tp_validator_css")));
+
+                if (tp_validator.getText ().contains ("tp_validator_css")){
+                    setHighlighter (tp_validator);
+                    takeScreenshot (tp_validator);
+
+                    log.info ("Navigating to " +tp_validator.getText () );
+                }
+            }
+        }
+        catch (Exception exception){
+            log.error (exception.getMessage ());
+        }
+    }
+
+    @Then ("User can start executing the test steps")
+    public void start_testExecution () throws IOException {
+
+        System.out.printf ("---------Here begins the Test Execution----------");
+
     }
 }
